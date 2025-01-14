@@ -121,12 +121,12 @@ nav a:hover {
 <body>
     <header>
         <div class="logo">
-            <img src="../assets/logo.png" href="#">
+            <a href="index.html"><img src="../assets/logo.png" alt="Logo"></a>
         </div>
         <nav>
             <a href="activité.html">Activité</a>
             <a href="chemin.html">Chemin</a>
-            <a href="#">À propos</a>
+            <a href="apropos.html">À propos</a>
             <a href="#" class="account-button">Account</a>
         </nav>
     </header>
@@ -148,7 +148,24 @@ nav a:hover {
             <p id="time-biking">Temps en vélo : Non calculé</p>
         </div>
     </div>
-
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html">
+                    <img src="../assets/logo.png" alt="Logo" class="logo-footer">
+                </a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><img src="../assets/facebook-icon.png" alt="Facebook"></a>
+                <a href="#" class="social-icon"><img src="../assets/twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-icon"><img src="../assets/instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VotreSite. Tous droits réservés.</p>
+        </div>
+    </footer>
+    
     <script>
         let map;
         let markers = [];
@@ -208,9 +225,9 @@ nav a:hover {
                             const walkingTime = distance / 5; 
                             const bikingTime = distance / 15; 
 
-                            document.getElementById("time-driving").textContent = `Temps en voiture : ${Math.round(drivingTime * 60)} min`;
-                            document.getElementById("time-walking").textContent = `Temps à pied : ${Math.round(walkingTime * 60)} min`;
-                            document.getElementById("time-biking").textContent = `Temps en vélo : ${Math.round(bikingTime * 60)} min`;
+                            document.getElementById("time-driving").textContent = `Temps en voiture : ${Math.round(drivingTime )} h`;
+                            document.getElementById("time-walking").textContent = `Temps à pied : ${Math.round(walkingTime )} h`;
+                            document.getElementById("time-biking").textContent = `Temps en vélo : ${Math.round(bikingTime )} h`;
                         });
                 });
         }

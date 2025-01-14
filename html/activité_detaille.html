@@ -9,12 +9,12 @@
 <body>
     <header>
         <div class="logo">
-            <img src="../assets/logo.png" alt="Logo">
+            <a href="index.html"><img src="../assets/logo.png" alt="Logo"></a>
         </div>
         <nav>
             <a href="activité.html">Activité</a>
             <a href="chemin.html">Chemin</a>
-            <a href="#">À propos</a>
+            <a href="apropos.html">À propos</a>
             <a href="#" class="account-button">Account</a>
         </nav>
     </header>
@@ -31,20 +31,115 @@
                 <p id="activity-full-description"></p>
             </div>
         </div>
-        
+
         <section class="activity-reviews">
             <h2>Commentaires</h2>
-            <div id="comments-list">
-                <!-- Les commentaires ajoutés dynamiquement s’afficheront ici -->
-            </div>
-    
+            <div id="comments-list"></div>
+
             <form id="comment-form">
                 <textarea id="comment-input" placeholder="Ajoutez un commentaire..." required></textarea>
+                <label for="rating-input">Note :</label>
+                <select id="rating-input" required>
+                    <option value="" disabled selected>-- Choisissez une note --</option>
+                    <option value="1">1 ★</option>
+                    <option value="2">2 ★★</option>
+                    <option value="3">3 ★★★</option>
+                    <option value="4">4 ★★★★</option>
+                    <option value="5">5 ★★★★★</option>
+                </select>
                 <button type="submit">Poster</button>
             </form>
         </section>
     </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html">
+                    <img src="../assets/logo.png" alt="Logo" class="logo-footer">
+                </a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><img src="../assets/facebook-icon.png" alt="Facebook"></a>
+                <a href="#" class="social-icon"><img src="../assets/twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-icon"><img src="../assets/instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VotreSite. Tous droits réservés.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const activityId = params.get('id'); 
 
-    <script src="../js/script.js"></script>
+            const activities = {
+                "everest": {
+                    title: "Everest",
+                    image: "../assets/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg",
+                    description: "L'Everest est le plus haut sommet du monde, situé dans l'Himalaya...",
+                    price: "$1.78",
+                },
+                "aconcagua": {
+                    title: "Aconcagua",
+                    image: "../assets/Aconcagua_13.JPG",
+                    description: "L'Aconcagua est le plus haut sommet de l'Argentine et du continent américain...",
+                    price: "$1.78",
+                },
+            };
+
+            const activity = activities[activityId];
+
+            if (activity) {
+                document.getElementById('activity-title').innerText = activity.title;
+                document.getElementById('activity-image').src = activity.image;
+                document.getElementById('activity-image').alt = activity.title;
+                document.getElementById('activity-name').innerText = activity.title;
+                document.getElementById('activity-price').innerText = `Prix: ${activity.price}`;
+                document.getElementById('activity-full-description').innerText = activity.description;
+            } else {
+                document.getElementById('activity-title').innerText = "Activité non trouvée";
+            }
+
+            const commentForm = document.getElementById('comment-form');
+            const commentInput = document.getElementById('comment-input');
+            const ratingSelect = document.getElementById('rating-input');
+            const commentsList = document.getElementById('comments-list');
+
+            commentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const newComment = commentInput.value.trim();
+                const selectedRating = ratingSelect.value;
+
+                if (newComment === '') {
+                    alert('Le commentaire ne peut pas être vide.');
+                    return;
+                }
+
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const currentTime = `${hours}:${minutes}`;
+
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('comment');
+                commentElement.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">Invité</span>
+                        <span class="comment-time">${currentTime}</span>
+                        <span class="comment-rating">${'★'.repeat(selectedRating)}${'☆'.repeat(5 - selectedRating)}</span>
+                    </div>
+                    <p class="comment-text">${newComment}</p>
+                `;
+
+                commentsList.appendChild(commentElement);
+
+                commentInput.value = '';
+                ratingSelect.value = '';
+            });
+        });
+    </script>
 </body>
 </html>

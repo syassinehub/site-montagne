@@ -1,0 +1,107 @@
+/* Exemple de CSS pour la page À propos */
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f8f8e9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo img {
+    width: 120px;
+    height: auto;
+}
+
+header a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+header .account-button {
+    background-color: #0044cc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+main.about {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #0044cc;
+}
+
+h2 {
+    margin-top: 1.5rem;
+}
+
+ul {
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+footer {
+    background-color: #0056b3;
+    color: white;
+    padding: 2rem 0;
+    font-family: 'Georgia', serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-logo img {
+    width: 120px;
+    height: auto;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-social .social-icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social .social-icon img:hover {
+    transform: scale(1.1); /* Effet au survol */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+
