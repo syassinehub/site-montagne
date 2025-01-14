@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #0056b3;
+}
+
+.account-button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 100px;
+}
+
+.spacer {
+    height: 80px;
+}
+
+/* Section Hero */
+.hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero img {
+    margin-top: 80px;
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.hero h1 {
+    font-family: Newsreader;
+    position: absolute;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.hero button {
+    position: absolute;
+    bottom: 20%;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background-color: #003f8a;
+}
+
+/* Contenu principal */
+.content {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    align-items: flex-start;
+}
+
+.content img {
+    width: 50%;
+    border-radius: 10px;
+}
+
+.text {
+    flex: 1;
+}
+
+.text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.text ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.text ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Section Footer */
+.footer {
+    padding: 20px 40px;
+    background-color: #f7f7f7;
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+}
+
+.footer p {
+    margin: 10px 0;
+}
+
+.footer strong {
+    font-size: 1rem;
+}

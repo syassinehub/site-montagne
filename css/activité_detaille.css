@@ -1,0 +1,140 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f8f8e9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+header a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+header .account-button {
+    background-color: #0044cc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+main.activity-detail {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.activity-header {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.activity-header img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.activity-info {
+    flex: 1;
+}
+
+.activity-info h2 {
+    font-size: 1.5rem;
+    color: #555;
+}
+
+.activity-info p {
+    margin: 0.5rem 0;
+}
+
+.activity-reviews {
+    margin-top: 2rem;
+}
+
+.activity-reviews h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+#comments-list .comment {
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: bold;
+}
+
+.comment-author {
+    color: #0044cc;
+}
+
+.comment-time {
+    color: #888;
+}
+
+.comment-text {
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
+}
+
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#comment-form textarea {
+    resize: none;
+    height: 80px;
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+#comment-form button {
+    align-self: flex-end;
+    padding: 0.5rem 1rem;
+    background-color: #0044cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#comment-form button:hover {
+    background-color: #003399;
+}

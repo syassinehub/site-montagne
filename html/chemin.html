@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemin</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    .logo img {
+        width: 120px;
+        height: auto;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1rem;
+        margin: 0 15px;
+        font-weight: bold;
+    }
+
+nav a:hover {
+    color: #0056b3;
+}
+
+.account-button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 100px;
+}
+
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .container {
+            margin-top: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+
+        #info {
+            margin: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../assets/logo.png" href="#">
+        </div>
+        <nav>
+            <a href="activité.html">Activité</a>
+            <a href="chemin.html">Chemin</a>
+            <a href="#">À propos</a>
+            <a href="#" class="account-button">Account</a>
+        </nav>
+    </header>
+
+    <div class="title">CHEMIN</div>
+
+    <div class="container">
+        <div class="inputs">
+            <input type="text" id="start" placeholder="Départ">
+            <span>→</span>
+            <input type="text" id="end" placeholder="Arrivée">
+            <button onclick="calculateRoute()">Calculer</button>
+        </div>
+        <div id="map"></div>
+        <div id="info">
+            <p id="distance">Distance : Non calculée</p>
+            <p id="time-driving">Temps en voiture : Non calculé</p>
+            <p id="time-walking">Temps à pied : Non calculé</p>
+            <p id="time-biking">Temps en vélo : Non calculé</p>
+        </div>
+    </div>
+
+    <script>
+        let map;
+        let markers = [];
+
+        function initMap() {
+            map = L.map('map').setView([48.8566, 2.3522], 6);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            }).addTo(map);
+        }
+
+        function calculateRoute() {
+            const start = document.getElementById("start").value;
+            const end = document.getElementById("end").value;
+
+            if (!start || !end) {
+                alert("Veuillez entrer les deux points.");
+                return;
+            }
+
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${start}`)
+                .then(response => response.json())
+                .then(startData => {
+                    if (startData.length === 0) {
+                        alert("Point de départ introuvable.");
+                        return;
+                    }
+
+                    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${end}`)
+                        .then(response => response.json())
+                        .then(endData => {
+                            if (endData.length === 0) {
+                                alert("Point d'arrivée introuvable.");
+                                return;
+                            }
+
+                            const startLatLng = [startData[0].lat, startData[0].lon];
+                            const endLatLng = [endData[0].lat, endData[0].lon];
+
+                            markers.forEach(marker => map.removeLayer(marker));
+                            markers = [];
+
+                            const startMarker = L.marker(startLatLng).addTo(map);
+                            const endMarker = L.marker(endLatLng).addTo(map);
+                            markers.push(startMarker, endMarker);
+
+                            const bounds = L.latLngBounds(startLatLng, endLatLng);
+                            map.fitBounds(bounds);
+
+                            const route = L.polyline([startLatLng, endLatLng], { color: 'blue' }).addTo(map);
+
+                            const distance = map.distance(startLatLng, endLatLng) / 1000; 
+                            document.getElementById("distance").textContent = `Distance : ${distance.toFixed(2)} km`;
+
+                            const drivingTime = distance / 80; 
+                            const walkingTime = distance / 5; 
+                            const bikingTime = distance / 15; 
+
+                            document.getElementById("time-driving").textContent = `Temps en voiture : ${Math.round(drivingTime * 60)} min`;
+                            document.getElementById("time-walking").textContent = `Temps à pied : ${Math.round(walkingTime * 60)} min`;
+                            document.getElementById("time-biking").textContent = `Temps en vélo : ${Math.round(bikingTime * 60)} min`;
+                        });
+                });
+        }
+
+        window.onload = initMap;
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activité Détail</title>
+    <link rel="stylesheet" href="../css/activité_detaille.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../assets/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <a href="activité.html">Activité</a>
+            <a href="chemin.html">Chemin</a>
+            <a href="#">À propos</a>
+            <a href="#" class="account-button">Account</a>
+        </nav>
+    </header>
+    <div class="spacer"></div>
+
+    <main class="activity-detail">
+        <h1 id="activity-title">Titre de l’activité</h1>
+        <p id="activity-date">March 21, 2024</p>
+        <div class="activity-header">
+            <img id="activity-image" src="" alt="Activity Image">
+            <div class="activity-info">
+                <h2 id="activity-name"></h2>
+                <p id="activity-price"></p>
+                <p id="activity-full-description"></p>
+            </div>
+        </div>
+        
+        <section class="activity-reviews">
+            <h2>Commentaires</h2>
+            <div id="comments-list">
+                <!-- Les commentaires ajoutés dynamiquement s’afficheront ici -->
+            </div>
+    
+            <form id="comment-form">
+                <textarea id="comment-input" placeholder="Ajoutez un commentaire..." required></textarea>
+                <button type="submit">Poster</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
