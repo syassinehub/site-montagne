@@ -116,6 +116,55 @@ nav a:hover {
         #info p {
             margin: 5px 0;
         }
+        footer {
+    background-color: #0056b3;
+    color: white;
+    padding: 2rem 0;
+    font-family: 'Georgia', serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-logo img {
+    width: 120px;
+    height: auto;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-social .social-icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social .social-icon img:hover {
+    transform: scale(1.1); 
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.fleche_chemin{
+    margin-top: 10px;
+}
     </style>
 </head>
 <body>
@@ -136,7 +185,7 @@ nav a:hover {
     <div class="container">
         <div class="inputs">
             <input type="text" id="start" placeholder="Départ">
-            <span>→</span>
+            <span class="fleche_chemin">→</span>
             <input type="text" id="end" placeholder="Arrivée">
             <button onclick="calculateRoute()">Calculer</button>
         </div>

@@ -63,6 +63,7 @@ footer {
     color: white;
     padding: 2rem 0;
     font-family: 'Georgia', serif;
+    position: fixed
 }
 
 .footer-content {
