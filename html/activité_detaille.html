@@ -22,7 +22,6 @@
 
     <main class="activity-detail">
         <h1 id="activity-title">Titre de l’activité</h1>
-        <p id="activity-date">March 21, 2024</p>
         <div class="activity-header">
             <img id="activity-image" src="" alt="Activity Image">
             <div class="activity-info">
@@ -31,11 +30,9 @@
                 <p id="activity-full-description"></p>
             </div>
         </div>
-
         <section class="activity-reviews">
             <h2>Commentaires</h2>
             <div id="comments-list"></div>
-
             <form id="comment-form">
                 <textarea id="comment-input" placeholder="Ajoutez un commentaire..." required></textarea>
                 <label for="rating-input">Note :</label>
@@ -70,36 +67,32 @@
     </footer>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             const params = new URLSearchParams(window.location.search);
-            const activityId = params.get('id'); 
+            const activityId = params.get('id');
 
-            const activities = {
-                "everest": {
-                    title: "Everest",
-                    image: "../assets/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg",
-                    description: "L'Everest est le plus haut sommet du monde, situé dans l'Himalaya...",
-                    price: "$1.78",
-                },
-                "aconcagua": {
-                    title: "Aconcagua",
-                    image: "../assets/Aconcagua_13.JPG",
-                    description: "L'Aconcagua est le plus haut sommet de l'Argentine et du continent américain...",
-                    price: "$1.78",
-                },
-            };
+            try {
+                const response = await fetch('../data/activities.json');
+                const data = await response.json();
 
-            const activity = activities[activityId];
+                const activity = data.activities.find(act => act.id === activityId);
 
-            if (activity) {
-                document.getElementById('activity-title').innerText = activity.title;
-                document.getElementById('activity-image').src = activity.image;
-                document.getElementById('activity-image').alt = activity.title;
-                document.getElementById('activity-name').innerText = activity.title;
-                document.getElementById('activity-price').innerText = `Prix: ${activity.price}`;
-                document.getElementById('activity-full-description').innerText = activity.description;
-            } else {
-                document.getElementById('activity-title').innerText = "Activité non trouvée";
+                if (activity) {
+                    document.getElementById('activity-title').innerText = activity.title;
+                    document.getElementById('activity-image').src = activity.image;
+                    document.getElementById('activity-image').alt = activity.title;
+                    document.getElementById('activity-name').innerText = activity.title;
+                    document.getElementById('activity-price').innerText = `Prix: ${activity.price}`;
+                    document.getElementById('activity-full-description').innerText = activity.description;
+                } else {
+                    document.getElementById('activity-title').innerText = "Activité non trouvée";
+                    document.querySelector('.activity-header').innerHTML = `
+                        <p>Nous ne trouvons pas l'activité que vous cherchez. <a href="activité.html">Retour à la liste des activités</a>.</p>
+                    `;
+                }
+            } catch (error) {
+                console.error("Erreur lors du chargement des données :", error);
+                document.getElementById('activity-title').innerText = "Erreur de chargement";
             }
 
             const commentForm = document.getElementById('comment-form');

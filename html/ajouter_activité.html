@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une activité</title>
+    <link rel="stylesheet" href="../css/ajouter_activité.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="../assets/logo.png" alt="Logo"></a>
+        </div>
+        <nav>
+            <a href="activité.html">Activité</a>
+            <a href="chemin.html">Chemin</a>
+            <a href="apropos.html">À propos</a>
+            <a href="#" class="account-button">Account</a>
+        </nav>
+    </header>
+    <div class="spacer"></div>
+
+    <main>
+        <h1>Ajouter une activité</h1>
+        <form id="add-activity-form">
+            <label for="title">Titre de l'activité :</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="image">URL de l'image :</label>
+            <input type="url" id="image" name="image" required>
+
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+
+            <label for="price">Prix :</label>
+            <input type="text" id="price" name="price" required>
+
+            <button type="submit">Ajouter</button>
+        </form>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html">
+                    <img src="../assets/logo.png" alt="Logo" class="logo-footer">
+                </a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><img src="../assets/facebook-icon.png" alt="Facebook"></a>
+                <a href="#" class="social-icon"><img src="../assets/twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-icon"><img src="../assets/instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VotreSite. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('add-activity-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const image = document.getElementById('image').value;
+            const description = document.getElementById('description').value;
+            const price = document.getElementById('price').value;
+
+            const newActivity = {
+                id: title.toLowerCase().replace(/\s+/g, '_'), 
+                title,
+                image,
+                description,
+                price
+            };
+
+            try {
+                
+                const response = await fetch('../data/activities.json', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newActivity)
+                });
+
+                if (response.ok) {
+                    alert('Activité ajoutée avec succès !');
+                    window.location.href = 'activité.html'; 
+                } else {
+                    alert('Erreur lors de l\'ajout de l\'activité.');
+                }
+            } catch (error) {
+                console.error('Erreur :', error);
+                alert('Impossible d\'ajouter l\'activité. Veuillez réessayer plus tard.');
+            }
+        });
+    </script>
+
+    <style>
+        main {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #0056b3;
+}
+
+.account-button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 100px;
+}
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, textarea, button {
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #00aaff;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007acc;
+        }
+        footer {
+    background-color: #0056b3;
+    color: white;
+    padding: 2rem 0;
+    font-family: 'Georgia', serif;
+    margin-top: auto; 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-logo img {
+    width: 120px;
+    height: auto;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-social .social-icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social .social-icon img:hover {
+    transform: scale(1.1); 
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+    </style>
+</body>
+</html>

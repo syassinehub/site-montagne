@@ -1,0 +1,66 @@
+{
+    "activities": [
+        {
+            "id": "everest",
+            "title": "Everest",
+            "image": "../assets/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg",
+            "description": "L'Everest est le plus haut sommet du monde, situé dans l'Himalaya...",
+            "price": "$1.78"
+        },
+        {
+            "id": "aconcagua",
+            "title": "Aconcagua",
+            "image": "../assets/Aconcagua_13.JPG",
+            "description": "L'Aconcagua est le plus haut sommet de l'Argentine et du continent américain...",
+            "price": "$300"
+        },
+        {
+            "id": "burjkalifa",
+            "title": "Burj Khalifa",
+            "image": "../assets/Puncakjaya.jpg",
+            "description": "Le Burj Khalifa est la plus haute tour du monde, située à Dubaï.",
+            "price": "$500"
+        },
+        {
+            "id": "everest",
+            "title": "Everest",
+            "image": "../assets/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg",
+            "description": "L'Everest est le plus haut sommet du monde, situé dans l'Himalaya...",
+            "price": "$1.78"
+        },
+        {
+            "id": "aconcagua",
+            "title": "Aconcagua",
+            "image": "../assets/Aconcagua_13.JPG",
+            "description": "L'Aconcagua est le plus haut sommet de l'Argentine et du continent américain...",
+            "price": "$300"
+        },
+        {
+            "id": "burjkalifa",
+            "title": "Burj Khalifa",
+            "image": "../assets/Puncakjaya.jpg",
+            "description": "Le Burj Khalifa est la plus haute tour du monde, située à Dubaï.",
+            "price": "$500"
+        },{
+            "id": "everest",
+            "title": "Everest",
+            "image": "../assets/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg",
+            "description": "L'Everest est le plus haut sommet du monde, situé dans l'Himalaya...",
+            "price": "$1.78"
+        },
+        {
+            "id": "aconcagua",
+            "title": "Aconcagua",
+            "image": "../assets/Aconcagua_13.JPG",
+            "description": "L'Aconcagua est le plus haut sommet de l'Argentine et du continent américain...",
+            "price": "$300"
+        },
+        {
+            "id": "burjkalifa",
+            "title": "Burj Khalifa",
+            "image": "../assets/Puncakjaya.jpg",
+            "description": "Le Burj Khalifa est la plus haute tour du monde, située à Dubaï.",
+            "price": "$500"
+        }
+    ]
+}
